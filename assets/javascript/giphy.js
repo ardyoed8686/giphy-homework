@@ -11,26 +11,32 @@ $(document).ready(function(){
     "X-Men: Apocalypse",
     "Iron Man",
     "The Avengers",
-    "Thor",
-    ]
+    "Thor"];
 
-//  generate buttons for items in movies array
-function renderButtons() {
+    //  generate buttons for items in movies array
+    function renderButtons() {
 
 //     Your app should take the topics in this array and create buttons in your HTML.
 //    * Try using a loop that appends a button for each string in the array.
-    $("buttons-view").text("");
 
-    for (let i = 0; i < movies.length; i++) {
+    $("#movie-buttons-view").text("");
+
+    for (let i = 0; i < topics.length; i++) {
         // create a button
         var movieButton = $("<button>");
-        movieButton.text(movies[i]);
-        $("buttons-view").append(movieButton);
-        console.log(movies[i]);
+
+        movieButton.addClass("topics");
+
+        movieButton.attr("data-search", topics[i]);
+
+        movieButton.text(topics[i]);
+
+        $("#movie-buttons-view").append(movieButton);
+        console.log(topics[i]);
+        }
+
+
     }
-
-
-}
 
 
 
