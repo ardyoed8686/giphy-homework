@@ -13,10 +13,37 @@ $(document).ready(function() {
     "The Avengers",
     "Thor"];
 
+
+     // Function for displaying movie data
+     function renderButtons() {
+
+      // Deleting the movie buttons prior to adding new movie buttons
+      // (this is necessary otherwise we will have repeat buttons)
+      $(".movie-buttons-view").empty();
+
+      // Looping through the array of movies
+      for (var i = 0; i < topics.length; i++) {
+
+        // Dynamicaly generate buttons for each movie in the array.
+        
+        var a = $("<button>");
+        // Adding a class
+        a.addClass("movie");
+        // Adding a data-attribute with a value of the movie at index i
+        a.attr("data-name", topics[i]);
+        // Providing the button's text with a value of the movie at index i
+        a.text(topics[i]);
+        // Adding the button to the HTML
+        $(".movie-buttons-view").append(a);
+        console.log(topics[i]);
+      }
+    }
+    renderButtons();
+
     function displayMovieGif() {
 
         var inputText = $(this).attr("data-name");
-        var queryURL = "https://api.giphy.com/v1/gifs/search?q=" + "The+Dark+Knight" + "&apikey=UIrioujrYNuoTPwZbtRtWOGp4prBx4Rs";
+        var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=UIrioujrYNuoTPwZbtRtWOGp4prBx4Rs&q=" + inputText + "&limit=10&offset=0&rating=G&lang=en";
 
         // Creates AJAX call for the specific movie button being clicked
         $.ajax({
@@ -26,8 +53,9 @@ $(document).ready(function() {
 
             // YOUR CODE GOES HERE!!!
             console.log(response);
+
             // Add a movie div to the #movie-view div
-            // var inputTextDiv = $('<div class="movie-display">');
+            var movieGiphy = $('<div class="giphyDiv">');
 
             // Add a poster to our movie div
             // var image = $("<img>").attr("src", response.Poster);
@@ -38,8 +66,8 @@ $(document).ready(function() {
             // inputTextDiv.append(releaseDate);
 
             // Add rating
-            // var rating = $("<p>").text(JSON.stringify(response.Ratings));
-            // inputTextDiv.append(rating);
+            var rating = $("<p>").text(JSON.stringify(response.rating));
+            inputTextDiv.append(rating);
 
             // Add plot
             // var plot = $("<p>").text(response.Plot);
@@ -56,29 +84,7 @@ $(document).ready(function() {
 
 
 
-      // Function for displaying movie data
-      function renderButtons() {
-
-        // Deleting the movie buttons prior to adding new movie buttons
-        // (this is necessary otherwise we will have repeat buttons)
-        $("#movie-buttons-view").empty();
-
-        // Looping through the array of movies
-        for (var i = 0; i < topics.length; i++) {
-
-          // Dynamicaly generate buttons for each movie in the array.
-          
-          var a = $("<button>");
-          // Adding a class
-          a.addClass("movie");
-          // Adding a data-attribute with a value of the movie at index i
-          a.attr("data-name", topics[i]);
-          // Providing the button's text with a value of the movie at index i
-          a.text(topics[i]);
-          // Adding the button to the HTML
-          $("#movie-buttons-view").append(a);
-        }
-      }
+     
 
       //adding new buttons
     $("#add-movie-btn").on("click", function(event) { 
@@ -93,3 +99,6 @@ $(document).ready(function() {
 
 
 });
+
+    // Calling the renderButtons function to display the initial list of movies
+    
