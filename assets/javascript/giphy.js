@@ -4,10 +4,10 @@ $(document).ready(function() {
 
     var topics = ["Avengers: Infinity War",
     "The Dark Knight",
-    "The Dark Night Rises",
+    "The Dark Knight Rises",
     "Guardians of the Galaxy",
-    "Dead Pool",
-    "Dead Pool 2",
+    "Deadpool",
+    "Deadpool 2",
     "X-Men: Apocalypse",
     "Iron Man",
     "The Avengers",
@@ -44,6 +44,7 @@ $(document).ready(function() {
 $(document).on("click", ".movie", function() {
   var inputText = $(this).attr("data-name");
         console.log("You entered: ", inputText);
+
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=UIrioujrYNuoTPwZbtRtWOGp4prBx4Rs&q=" + inputText + "&limit=10&offset=0&rating=G&lang=en";
         console.log(queryURL);
 
@@ -59,47 +60,21 @@ $(document).on("click", ".movie", function() {
 
             for (let i = 0; i < response.data.length; i++) {
               var movieGiphy = $('<div class="giphyDiv">');
+
               var rating = $("<p>").text("Rating: " + data[i].rating);
-            movieGiphy.append(rating);
+              movieGiphy.append(rating);
 
-             var image = $("<img>").attr("src", data[i].images.fixed_height_still.url);
-             image.attr("data-animate", data[i].images.fixed_height.url)
-            movieGiphy.append(image);
+              var image = $("<img>").attr("src", data[i].images.fixed_height_still.url);
+              image.attr("data-animate", data[i].images.fixed_height.url)
+              movieGiphy.append(image);
 
-            $("#giphyDiv").prepend(movieGiphy);
-            
-
-              
+            $("#giphyDiv").prepend(movieGiphy);  
             }
-
-            // Add a movie div to the #movie-view div
-            
-
-            // Add a poster to our movie div
-           
-
-            // Add release date
-            // var releaseDate = $("<p>").text(response.Released);
-            // inputTextDiv.append(releaseDate);
-
-            // Add rating
-            
-
-            // Add plot
-            // var plot = $("<p>").text(response.Plot);
-            // inputTextDiv.append(plot);
-
-            // Add the movie to the top of the movies view
-            // $("#movies-view").prepend(inputTextDiv);
-
-
 
         });
   console.log("we're inside on.click", this);
 });
 
-
-     
 
       //adding new buttons
     $("#add-movie").on("click", function(event) { 
@@ -112,8 +87,17 @@ $(document).on("click", ".movie", function() {
         console.log(topics);
     });
 
-
+    $(".images").on("click", function() {
+    var state = $(this).attr("data-state");
+    if (state === "still") {
+      $(this).attr("src", $(this).attr("data-animate"));
+      $(this).attr("data-state", "animate");
+    }  else {
+      $(this).attr("src", $(this).attr("data-still"));
+      $(this).attr("data-state", "still");
+    }
+  });
 });
-
+// create code for animate function
     // Calling the renderButtons function to display the initial list of movies
     
