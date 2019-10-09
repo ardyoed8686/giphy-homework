@@ -9,28 +9,37 @@
     <!-- Bootstrap link -->
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
 
+    <!-- CSS stylesheet -->
+    <link rel="stylesheet" href="assets/css/style.css">
+
+    <!-- jQuery library -->
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+
 </head>
 
 
 <body>
-<div class="movie-buttons-view">
-</div>
+<div class="movie-buttons-view" type="button" class="btn btn-primary"></div>
+
 <br>
 
 
     <form id="add-movie-btn">
-        <label for="movie-input">Add a Movie Button</label><br />
-        <input type="text" id="movie-input" /><br />
-        
-        <!-- Button triggers new movie to be added -->
-        <input id="add-movie" type="submit" value="Submit"/>
-              </form>
+        <div class="col-md-4" id="add-one">
+            <label for="movie-input">Add a Movie Button</label><br />
+            <input type="text" id="movie-input" /><br />
+                
+            <!-- Button triggers new movie to be added -->
+            <input id="add-movie" type="submit" value="Submit"/>
+        </div>
+    </form>
+       <br>
 
-              <div class="giphyDiv">
-                  
-              </div>
+            <div id="giphyDiv"></div>
 
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+   
     <script src="assets/javascript/giphy.js"></script>
     
 

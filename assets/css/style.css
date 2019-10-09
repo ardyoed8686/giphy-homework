@@ -1,0 +1,24 @@
+body {
+background-image: url("cinema-background-with-movie-objects_1823381.jpg");
+color: #fff;
+}
+
+button {
+background-color: #007bff;
+color: #fff;
+font-size: 10pt;
+}
+
+#giphyDiv {
+float: left;
+margin: 10px;
+width: 200px;
+}
+
+#add-one {
+font-size: 10pt;
+float: right;
+background-color: #666;
+color: #fff;
+
+}

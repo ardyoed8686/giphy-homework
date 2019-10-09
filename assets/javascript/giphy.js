@@ -35,15 +35,17 @@ $(document).ready(function() {
         a.text(topics[i]);
         // Adding the button to the HTML
         $(".movie-buttons-view").append(a);
-        console.log(topics[i]);
+        // console.log(topics[i]);
       }
     }
     renderButtons();
 
-    function displayMovieGif() {
-
-        var inputText = $(this).attr("data-name");
+  
+$(document).on("click", ".movie", function() {
+  var inputText = $(this).attr("data-name");
+        console.log("You entered: ", inputText);
         var queryURL = "https://api.giphy.com/v1/gifs/search?api_key=UIrioujrYNuoTPwZbtRtWOGp4prBx4Rs&q=" + inputText + "&limit=10&offset=0&rating=G&lang=en";
+        console.log(queryURL);
 
         // Creates AJAX call for the specific movie button being clicked
         $.ajax({
@@ -52,22 +54,36 @@ $(document).ready(function() {
         }).then(function(response) {
 
             // YOUR CODE GOES HERE!!!
-            console.log(response);
+            console.log("we're looking at response from ajax", response.data);
+            var data = response.data;
+
+            for (let i = 0; i < response.data.length; i++) {
+              var movieGiphy = $('<div class="giphyDiv">');
+              var rating = $("<p>").text("Rating: " + data[i].rating);
+            movieGiphy.append(rating);
+
+             var image = $("<img>").attr("src", data[i].images.fixed_height_still.url);
+             image.attr("data-animate", data[i].images.fixed_height.url)
+            movieGiphy.append(image);
+
+            $("#giphyDiv").prepend(movieGiphy);
+            
+
+              
+            }
 
             // Add a movie div to the #movie-view div
-            var movieGiphy = $('<div class="giphyDiv">');
+            
 
             // Add a poster to our movie div
-            // var image = $("<img>").attr("src", response.Poster);
-            // inputTextDiv.append(image);
+           
 
             // Add release date
             // var releaseDate = $("<p>").text(response.Released);
             // inputTextDiv.append(releaseDate);
 
             // Add rating
-            var rating = $("<p>").text(JSON.stringify(response.rating));
-            inputTextDiv.append(rating);
+            
 
             // Add plot
             // var plot = $("<p>").text(response.Plot);
@@ -79,15 +95,14 @@ $(document).ready(function() {
 
 
         });
-
-    }
-
+  console.log("we're inside on.click", this);
+});
 
 
      
 
       //adding new buttons
-    $("#add-movie-btn").on("click", function(event) { 
+    $("#add-movie").on("click", function(event) { 
     event.preventDefault();
 
         //grab html from what is typed into box
