@@ -29,6 +29,7 @@ $(document).ready(function() {
         var a = $("<button>");
         // Adding a class
         a.addClass("movie");
+        
         // Adding a data-attribute with a value of the movie at index i
         a.attr("data-name", topics[i]);
         // Providing the button's text with a value of the movie at index i
@@ -61,11 +62,11 @@ $(document).on("click", ".movie", function() {
             for (let i = 0; i < response.data.length; i++) {
               var movieGiphy = $('<div class="giphyDiv">');
 
-              var rating = $("card-header").text("Rating: " + data[i].rating);
+              var rating = $("<p>").text("Rating: " + data[i].rating);
               movieGiphy.append(rating);
 
               var image = $("<img>").attr("src", data[i].images.fixed_height_still.url);
-              image.attr("data-animate", data[i].images.fixed_height.url)
+              image.attr("data-animate", data[i].images.fixed_height.url);
               movieGiphy.append(image);
 
             $("#giphyDiv").prepend(movieGiphy);  
