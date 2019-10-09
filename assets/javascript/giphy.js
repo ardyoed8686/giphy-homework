@@ -61,7 +61,7 @@ $(document).on("click", ".movie", function() {
             for (let i = 0; i < response.data.length; i++) {
               var movieGiphy = $('<div class="giphyDiv">');
 
-              var rating = $("<p>").text("Rating: " + data[i].rating);
+              var rating = $("card-header").text("Rating: " + data[i].rating);
               movieGiphy.append(rating);
 
               var image = $("<img>").attr("src", data[i].images.fixed_height_still.url);
